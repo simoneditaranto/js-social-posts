@@ -111,21 +111,27 @@ const idPostsLikeArray = [];
 buttonLikesElement.forEach(function(currentButton, index) {
     // al click cambio il colore del tasto stesso e incremento il numero dei like di 1
     currentButton.addEventListener("click", function() {
-        // aggiungo la classe "clicked"
-        this.classList.add("clicked");
-        
-        // prendo dal mio array di post l'elemento che ha indice uguale al tasto del post di riferimento
-        // prendo l'informazione del numero di like e incremento di 1 
-        posts[index].likes += 1;
 
-        // dalla lista creata sopra prendo l'elemento che ha indice uguale al tasto del post di riferimento
-        // e cambio il contenuto con il nuovo valore 
-        numbersLikeElement[index].innerHTML = `${posts[index].likes}`;
+        // se non ho già cliccato prima
+        if(!this.classList.contains("clicked")) {
 
-        // aggiungo l'id del post di riferimento al mio array creato sopra
-        console.log(posts[index.id]);
-        idPostsLikeArray.push(posts[index].id);
-        console.log(idPostsLikeArray);
+            // aggiungo la classe "clicked"
+            this.classList.add("clicked");
+    
+            // prendo dal mio array di post l'elemento che ha indice uguale al tasto del post di riferimento
+            // prendo l'informazione del numero di like e incremento di 1 
+            posts[index].likes += 1;
+    
+            // dalla lista creata sopra prendo l'elemento che ha indice uguale al tasto del post di riferimento
+            // e cambio il contenuto con il nuovo valore 
+            numbersLikeElement[index].innerHTML = `${posts[index].likes}`;
+    
+            // aggiungo l'id del post di riferimento al mio array creato sopra
+            idPostsLikeArray.push(posts[index].id);
+            console.log(idPostsLikeArray);
+            
+        }
+
     }
 )});
 
