@@ -98,3 +98,29 @@ posts.forEach(currentElement => {
     `;
 
 });
+
+
+// memorizzo in una lista i contenitori del tasto mi piace
+const buttonLikesElement = document.querySelectorAll(".like-button");
+console.log(buttonLikesElement);
+//test
+
+// memorizzo in una lista il numero dei mi piace di ogni post
+// const numbersLikeElement = document.querySelectorAll(".js-likes-counter");
+// console.log(numbersLikeElement)
+// numbersLikeElement.forEach(element => {
+//     console.log(element.innerHTML);
+// })
+
+// per ogni tasto "mi piace"
+buttonLikesElement.forEach(function(currentButton, index) {
+    // al click cambio il colore del testo e incremento il numero dei like di 1
+    currentButton.addEventListener("click", function() {
+        this.classList.add("clicked");
+        posts[index].likes += 1;
+        console.log(posts[index].likes);
+    }
+)});
+
+
+
