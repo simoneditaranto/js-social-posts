@@ -56,6 +56,24 @@ const posts = [
     }
 ];
 
+//formatto le date prima di inserirle nel DOM
+// per ogni elemento di "posts" 
+posts.forEach(currentElement => {
+    
+    // 2021-06-25 --> 25-06-2021
+    // creo 3 stringhe che rappresentano rispettivamente giorno, mese, anno
+    let day = currentElement.created.substring(8);
+    console.log("day", day);
+    let month = currentElement.created.substring(5, 7);
+    console.log("month", month);
+    let year = currentElement.created.substring(0, 4);
+    console.log("year", year);
+
+    // modifico la nuova data direttamente nell'array "posts"
+    currentElement.created = `${day}-${month}-${year}`;
+
+});
+
 
 // vado a generare dinamicamente i miei post
 // memorizzo il "#container" in una costante
@@ -129,7 +147,7 @@ buttonLikesElement.forEach(function(currentButton, index) {
             // aggiungo l'id del post di riferimento al mio array creato sopra
             idPostsLikeArray.push(posts[index].id);
             console.log(idPostsLikeArray);
-            
+
         }
 
     }
