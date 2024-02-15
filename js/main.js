@@ -148,7 +148,7 @@ buttonLikesElement.forEach(function(currentButton, index) {
             // aggiungo la classe "clicked"
             this.classList.add("clicked");
     
-            // prendo dal mio array di post l'elemento che ha indice uguale al tasto del post di riferimento
+            // prendo dal mio array "posts" l'elemento che ha indice uguale al tasto del post di riferimento
             // prendo l'informazione del numero di like e incremento di 1 
             posts[index].likes += 1;
     
@@ -159,7 +159,25 @@ buttonLikesElement.forEach(function(currentButton, index) {
             // aggiungo l'id del post di riferimento al mio array creato sopra
             idPostsLikeArray.push(posts[index].id);
 
+        } else {
+
+            // rimuovo la classe "clicked"
+            this.classList.remove("clicked");
+
+            // decremento il contatore dei likes 
+            posts[index].likes -= 1;
+
+            // lo mostro in pagina
+            numbersLikeElement[index].innerHTML = `${posts[index].likes}`;
+
+            // rimuovo l'id del post di riferimento al mio array
+            // prendo l'indice dell'id che sto cercando dal mio array di id 
+            let indexToRemove = idPostsLikeArray.indexOf(posts[index].id);
+            // lo rimuovo
+            idPostsLikeArray.splice(indexToRemove, 1);
         }
+
+        console.log(idPostsLikeArray);
 
     }
 )});
