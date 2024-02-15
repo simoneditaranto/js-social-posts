@@ -63,11 +63,8 @@ posts.forEach(currentElement => {
     // 2021-06-25 --> 25-06-2021
     // creo 3 stringhe che rappresentano rispettivamente giorno, mese, anno
     let day = currentElement.created.substring(8);
-    console.log("day", day);
     let month = currentElement.created.substring(5, 7);
-    console.log("month", month);
     let year = currentElement.created.substring(0, 4);
-    console.log("year", year);
 
     // modifico la nuova data direttamente nell'array "posts"
     currentElement.created = `${day}-${month}-${year}`;
@@ -80,14 +77,16 @@ posts.forEach(currentElement => {
 const containerElement = document.getElementById("container");
 
 // attraverso un ciclo forEach, per ogni elemento del mio array inserisco le informazioni nel DOM
-posts.forEach(currentElement => {
+posts.forEach((currentElement, index) => {
+
+    // <img class="profile-pic" src=${currentElement.author.image} alt="Phil Mangione"></img>
 
     containerElement.innerHTML += `
     <div class="post">
             <div class="post__header">
                 <div class="post-meta">                    
                     <div class="post-meta__icon">
-                        <img class="profile-pic" src=${currentElement.author.image} alt="Phil Mangione">                    
+                                            
                     </div>
                     <div class="post-meta__data">
                         <div class="post-meta__author">${currentElement.author.name}</div>
@@ -115,6 +114,17 @@ posts.forEach(currentElement => {
         </div>
     `;
 
+    // elemento immagine di profilo
+    // se l'url dell'immagine di profilo è presente nel mio array "posts"
+    const iconsMediaList = document.querySelectorAll(".post-meta__icon")
+    if(currentElement.author.image != null) {
+        iconsMediaList[index].innerHTML = `<img class="profile-pic" src=${currentElement.author.image} alt="Phil Mangione"></img>`;
+    } else {
+        iconsMediaList[index].innerHTML = `<span class="profile-pic-letters">${startLettersName(currentElement.author.name)}</span>`
+    }
+
+
+
 });
 
 
@@ -128,8 +138,10 @@ const idPostsLikeArray = [];
 // per ogni tasto "mi piace"
 buttonLikesElement.forEach(function(currentButton, index) {
     // al click cambio il colore del tasto stesso e incremento il numero dei like di 1
-    currentButton.addEventListener("click", function() {
+    currentButton.addEventListener("click", function(event) {
 
+        event.preventDefault();
+    
         // se non ho già cliccato prima
         if(!this.classList.contains("clicked")) {
 
@@ -146,7 +158,6 @@ buttonLikesElement.forEach(function(currentButton, index) {
     
             // aggiungo l'id del post di riferimento al mio array creato sopra
             idPostsLikeArray.push(posts[index].id);
-            console.log(idPostsLikeArray);
 
         }
 
@@ -154,4 +165,18 @@ buttonLikesElement.forEach(function(currentButton, index) {
 )});
 
 
+// definisco la funzione che mi prende un nome e mi restituisce una stringa con le iniziali
+function startLettersName(userName) {
 
+    // stringa con le iniziali del nome di ritorno
+    let userStartName;
+
+    let firstNameLetter = userName.charAt(0);
+    let secondNameLetterIndex = userName.indexOf(' ');
+    let secondNameLetter = userName.charAt(secondNameLetterIndex + 1);
+
+    userStartName = `${firstNameLetter} ${secondNameLetter}`;
+    
+    return userStartName;
+}
+  

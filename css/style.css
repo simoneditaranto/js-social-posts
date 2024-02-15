@@ -85,6 +85,15 @@ h1 {
     text-transform: uppercase;
 }
 
+/* mia modifica */
+/* immagine di profilo con le iniziali del nome */
+.profile-pic-letters{
+    font-weight: bold;
+    color: #023047;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+}
+
 .post__text {
     margin-bottom: 16px;
 }
