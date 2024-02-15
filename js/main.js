@@ -102,15 +102,10 @@ posts.forEach(currentElement => {
 
 // memorizzo in una lista i contenitori del tasto mi piace
 const buttonLikesElement = document.querySelectorAll(".like-button");
-console.log(buttonLikesElement);
-//test
-
 // memorizzo in una lista il numero dei like di ogni post
 const numbersLikeElement = document.querySelectorAll(".js-likes-counter");
-// numbersLikeElement.forEach(element => {
-//     console.log(element.innerHTML);
-// })
-// test
+// creo un array che avrà come elementi gli id dei post a cui metto like
+const idPostsLikeArray = [];
 
 // per ogni tasto "mi piace"
 buttonLikesElement.forEach(function(currentButton, index) {
@@ -118,12 +113,19 @@ buttonLikesElement.forEach(function(currentButton, index) {
     currentButton.addEventListener("click", function() {
         // aggiungo la classe "clicked"
         this.classList.add("clicked");
+        
         // prendo dal mio array di post l'elemento che ha indice uguale al tasto del post di riferimento
         // prendo l'informazione del numero di like e incremento di 1 
         posts[index].likes += 1;
+
         // dalla lista creata sopra prendo l'elemento che ha indice uguale al tasto del post di riferimento
         // e cambio il contenuto con il nuovo valore 
         numbersLikeElement[index].innerHTML = `${posts[index].likes}`;
+
+        // aggiungo l'id del post di riferimento al mio array creato sopra
+        console.log(posts[index.id]);
+        idPostsLikeArray.push(posts[index].id);
+        console.log(idPostsLikeArray);
     }
 )});
 
